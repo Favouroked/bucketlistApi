@@ -5,7 +5,7 @@ const ItemsSchema = new Schema({
     name: String,
     date_created: { type: Date, default: Date.now },
     date_modified: { type: Date, default: Date.now },
-    done: { type: Boolean }
+    done: { type: Boolean, default: false }
 });
 
 const BucketListSchema = new Schema({
