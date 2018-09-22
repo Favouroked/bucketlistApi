@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
 const jwt = require('express-jwt');
+const cors = require('cors');
 var indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const bucketListRouter = require('./routes/bucketlists');
@@ -23,7 +24,7 @@ const apiVersion = 'api/v1';
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));

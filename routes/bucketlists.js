@@ -5,9 +5,9 @@ const {BucketList, Items} = require('../models/bucketlist');
 /* GET home page. */
 router.post('/', function (req, res, next) {
     const {name} = req.body, created_by = req.user.id;
-    BucketList.create({name, created_by}, (err, _) => {
+    BucketList.create({name, created_by}, (err, bucketlist) => {
         if (err) return res.status(400).json({status: 'failure', errors: ['Error occurred']});
-        return res.status(201).json({status: "success"});
+        return res.status(201).json(bucketlist);
     });
 });
 
@@ -36,16 +36,16 @@ router.put('/:bucket_id', (req, res) => {
 
 router.delete('/:bucket_id', (req, res) => {
     const id = req.params.bucket_id;
-    BucketList.findByIdAndDelete(id, (err, result) => {
+    BucketList.findByIdAndDelete(id, (err, _) => {
         if (err) return res.status(400).json({status: 'failure', errors: ['Error occurred']});
-        return res.status(200).json({status: 'success'})
+        return res.status(200).json({status: true});
     })
 });
 
 router.post('/:bucket_id/items', (req, res) => {
     const bucket_id = req.params.bucket_id;
     const {name} = req.body;
-    BucketList.findById(bucket_id, (err, bucketlist) => {
+    BucketList.findByIdAndUpdate(bucket_id, {date_modified: new Date()}, {new: true}, (err, bucketlist) => {
         if (err) return res.status(400).json({status: 'failure', errors: ['Error occurred']});
         const item = new Items({name});
         bucketlist.items.push(item);
@@ -76,7 +76,7 @@ router.put('/:bucket_id/items/:item_id', (req, res) => {
     const bucket_id = req.params.bucket_id;
     const item_id = req.params.item_id;
     const {name, done} = req.body;
-    BucketList.findById(bucket_id, (err, bucketlist) => {
+    BucketList.findByIdAndUpdate(bucket_id, {date_modified: new Date()}, {new: true}, (err, bucketlist) => {
         if (err) return res.status(400).json({status: 'failure', errors: ['Error occurred']});
         let item_index = bucketlist.items.findIndex(item => item.id === item_id);
         bucketlist.items[item_index].name = name || bucketlist.items[item_index].name;
@@ -90,7 +90,7 @@ router.put('/:bucket_id/items/:item_id', (req, res) => {
 router.delete('/:bucket_id/items/:item_id', (req, res) => {
     const bucket_id = req.params.bucket_id;
     const item_id = req.params.item_id;
-    BucketList.findById(bucket_id, (err, bucketlist) => {
+    BucketList.findByIdAndUpdate(bucket_id, {date_modified: new Date()}, {new: true}, (err, bucketlist) => {
         if (err) return res.status(400).json({status: 'failure', errors: ['Error occurred']});
         let remaining_items = bucketlist.items.filter(item => item.id !== item_id);
         bucketlist.items = remaining_items;

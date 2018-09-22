@@ -1,21 +1,32 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import ButtonAppBar from './components/Navbar/Navbar';
+import BucketLists from './components/BucketLists/BucketLists';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+
+    state = {
+        loggedIn: false
+    };
+    toggleLogin = () => {
+        this.setState({loggedIn: !this.state.loggedIn})
+    };
+
+    componentDidMount() {
+        let token = localStorage.getItem('token');
+        if (token) {
+            this.setState({loggedIn: true});
+        }
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <ButtonAppBar toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>
+                {this.state.loggedIn ? <BucketLists/> : null}
+            </div>
+        );
+    }
 }
 
 export default App;
