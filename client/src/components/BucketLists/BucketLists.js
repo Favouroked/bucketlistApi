@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {withStyles} from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
+import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import BucketList from '../BucketList/BucketList';
@@ -16,19 +15,10 @@ import axios from 'axios';
 
 const styles = theme => ({
     root: {
-        display: 'flex',
-        "align-items": 'center',
-        flexWrap: 'wrap',
-        marginLeft: '100px',
-        marginRight: '100px',
+        flexGrow: 1,
         marginTop: '10px',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
-    },
-    gridList: {
-        width: '100%',
-        height: 'auto',
+        marginLeft: '20px',
+        marginRight: '20px'
     },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
@@ -37,7 +27,7 @@ const styles = theme => ({
         position: 'absolute',
         bottom: theme.spacing.unit * 2,
         right: theme.spacing.unit * 2
-    }
+    },
 });
 
 class BucketLists extends React.Component {
@@ -82,15 +72,16 @@ class BucketLists extends React.Component {
 
         return (
             <div className={classes.root}>
-                <GridList cellHeight={180} cols={3} spacing={20} className={classes.gridList}>
+
+                <Grid container spacing={24}>
                     {this.state.bucketlists.map(bucketlist => {
                         return (
-                            <GridListTile cols={1} key={bucketlist._id}>
+                            <Grid item xs={12} sm={4} key={bucketlist._id}>
                                 <BucketList bucketlist={bucketlist} handleDelete={this.handleDelete}/>
-                            </GridListTile>
+                            </Grid>
                         )
                     })}
-                </GridList>
+                </Grid>
                 <Button variant={'fab'} className={classes.fab} onClick={this.handleClickOpen}
                         color={'primary'}><AddIcon/></Button>
                 <Dialog
