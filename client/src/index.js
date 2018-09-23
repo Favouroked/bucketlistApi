@@ -6,7 +6,7 @@ import axios from 'axios';
 import {BrowserRouter} from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 
-axios.defaults.baseURL = 'http://localhost:4000';
+// axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 axios.interceptors.request.use(request => {

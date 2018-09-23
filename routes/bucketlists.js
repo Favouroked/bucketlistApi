@@ -12,10 +12,30 @@ router.post('/', function (req, res, next) {
 });
 
 router.get('/', (req, res) => {
-    BucketList.find({}, (err, bucketlists) => {
-        if (err) return res.status(400).json({status: 'failure', errors: ['Error occurred']});
-        return res.status(200).json(bucketlists);
-    })
+    let {limit, page, q} = req.query;
+    limit = limit || 20;
+    if (limit > 100) {
+        limit = 100;
+    }
+    page = page - 1 || 0;
+    if (q) {
+        BucketList.find({$text: {$search: q}})
+            .skip(limit * page)
+            .limit(limit)
+            .exec((err, bucketlists) => {
+                if (err) return res.status(400).json({status: 'failure', errors: ['Error occurred']});
+                return res.status(200).json(bucketlists);
+            })
+    } else {
+        BucketList.find({})
+            .skip(limit * page)
+            .limit(limit)
+            .exec((err, bucketlists) => {
+                if (err) return res.status(400).json({status: 'failure', errors: ['Error occurred']});
+                return res.status(200).json(bucketlists);
+            })
+    }
+
 });
 
 router.get('/:bucket_id', (req, res) => {

@@ -15,7 +15,7 @@ const BucketListSchema = new Schema({
     date_modified: { type: Date, default: Date.now },
     created_by: { type: Schema.Types.ObjectId, ref: 'User' }
 });
-
+BucketListSchema.index({name: 'text'});
 const Items = mongoose.model('Items', ItemsSchema);
 const BucketList = mongoose.model('BucketList', BucketListSchema);
 
