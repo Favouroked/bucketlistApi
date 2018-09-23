@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './App.css';
 import ButtonAppBar from './components/Navbar/Navbar';
 import BucketLists from './components/BucketLists/BucketLists';
+import {Route} from 'react-router-dom';
+import IndividualBucket from "./components/IndividualBucket/IndividualBucket";
 
 class App extends Component {
 
@@ -23,7 +25,12 @@ class App extends Component {
         return (
             <div className="App">
                 <ButtonAppBar toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>
-                {this.state.loggedIn ? <BucketLists/> : null}
+                {this.state.loggedIn ?
+                    <div>
+                        <Route exact path={'/'} component={BucketLists}/>
+                        <Route path={'/bucketlists/:id'} component={IndividualBucket}/>
+                    </div>
+                    : null}
             </div>
         );
     }

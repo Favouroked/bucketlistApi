@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import axios from 'axios';
+import {BrowserRouter} from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 
 axios.defaults.baseURL = 'http://localhost:4000';
@@ -26,5 +27,5 @@ axios.interceptors.response.use(response => {
     return Promise.reject(error);
 });
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<BrowserRouter><App/></BrowserRouter>, document.getElementById('root'));
 registerServiceWorker();

@@ -4,7 +4,7 @@ import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
-import BucketList from '../BucketList/BucketList';
+import Item from '../Item/Item';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -29,43 +29,39 @@ const styles = theme => ({
     },
 });
 
-class BucketLists extends React.Component {
+class IndividualBucket extends React.Component {
 
     state = {
         open: false,
-        add_name: '',
-        bucketlists: []
+        bucketlist: {},
+        add_name: ''
     };
     handleSubmit = () => {
         const data = {name: this.state.add_name};
-        axios.post('/api/v1/bucketlists', data)
+        const {match: {params}} = this.props;
+        axios.post(`/api/v1/bucketlists/${params.id}/items`, data)
             .then(response => {
-                let bucketlist = [...this.state.bucketlists];
-                bucketlist.push(response.data);
-                this.setState({bucketlists: bucketlist});
+                this.setState({bucketlist: response.data});
                 this.handleClose();
+            });
+    };
+    handleDelete = (id) => {
+        const {match: {params}} = this.props;
+        axios.delete(`/api/v1/bucketlists/${params.id}/items/${id}`)
+            .then(response => {
+                this.setState({bucketlist: response.data});
             });
     };
 
     handleEdit = (data) => {
-        const {name, id} = data;
-        axios.put(`/api/v1/bucketlists/${id}`, {name})
+        const {match: {params}} = this.props;
+        const {name, done, id} = data;
+        axios.put(`/api/v1/bucketlists/${params.id}/items/${id}`, {name, done})
             .then(response => {
-                let modified = [...this.state.bucketlists];
-                let index = modified.findIndex(bucketlist => bucketlist._id === id);
-                modified[index] = response.data;
-                this.setState({bucketlists: modified});
-            })
-    }
-
-    handleDelete = (id) => {
-        axios.delete('/api/v1/bucketlists/' + id)
-            .then(_ => {
-                let old_bucketlists = [...this.state.bucketlists];
-                let new_bucketlists = old_bucketlists.filter(bucketlist => bucketlist._id !== id);
-                this.setState({bucketlists: new_bucketlists});
+                this.setState({bucketlist: response.data});
             });
     };
+
     handleClickOpen = () => {
         this.setState({open: true});
     };
@@ -73,9 +69,20 @@ class BucketLists extends React.Component {
         this.setState({open: false});
     };
 
+    componentWillReceiveProps(nextProps) {
+        console.log('Component will receive props');
+        if (this.props.match.params.id !== nextProps.match.params.id) {
+            const {match: {params}} = this.props;
+            axios.get(`/api/v1/bucketlists/${params.id}`)
+                .then(response => this.setState({bucketlist: response.data}));
+        }
+    };
+
     componentDidMount() {
-        axios.get('/api/v1/bucketlists')
-            .then(response => this.setState({bucketlists: response.data}));
+        console.log('component did mount');
+        const {match: {params}} = this.props;
+        axios.get(`/api/v1/bucketlists/${params.id}`)
+            .then(response => this.setState({bucketlist: response.data}));
     }
 
     render() {
@@ -85,14 +92,13 @@ class BucketLists extends React.Component {
             <div className={classes.root}>
 
                 <Grid container spacing={24}>
-                    {this.state.bucketlists.map(bucketlist => {
+                    {this.state.bucketlist.items ? this.state.bucketlist.items.map(item => {
                         return (
-                            <Grid item xs={12} sm={4} key={bucketlist._id}>
-                                <BucketList bucketlist={bucketlist} handleEdit={this.handleEdit}
-                                            handleDelete={this.handleDelete}/>
+                            <Grid item xs={12} sm={4} key={item._id}>
+                                <Item item={item} handleEdit={this.handleEdit} handleDelete={this.handleDelete}/>
                             </Grid>
                         )
-                    })}
+                    }) : null}
                 </Grid>
                 <Button variant={'fab'} className={classes.fab} onClick={this.handleClickOpen}
                         color={'primary'}><AddIcon/></Button>
@@ -101,7 +107,7 @@ class BucketLists extends React.Component {
                     onClose={this.handleClose}
                     aria-labelledby="form-dialog-title"
                 >
-                    <DialogTitle id="form-dialog-title">Add BucketList</DialogTitle>
+                    <DialogTitle id="form-dialog-title">Add Item</DialogTitle>
                     <DialogContent>
                         <TextField
                             autoFocus
@@ -114,11 +120,11 @@ class BucketLists extends React.Component {
                         />
                     </DialogContent>
                     <DialogActions>
-                        <Button onClick={this.handleClose} color="primary">
+                        <Button onClick={this.handleClose} color="secondary">
                             Cancel
                         </Button>
                         <Button onClick={this.handleSubmit} color="primary">
-                            Add
+                            Add Item
                         </Button>
                     </DialogActions>
                 </Dialog>
@@ -127,8 +133,8 @@ class BucketLists extends React.Component {
     }
 }
 
-BucketLists.propTypes = {
+IndividualBucket.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(BucketLists);
+export default withStyles(styles)(IndividualBucket);

@@ -50,7 +50,7 @@ router.post('/:bucket_id/items', (req, res) => {
         const item = new Items({name});
         bucketlist.items.push(item);
         bucketlist.save();
-        return res.status(201).json({status: "success"});
+        return res.status(201).json(bucketlist);
     });
 });
 
@@ -83,7 +83,7 @@ router.put('/:bucket_id/items/:item_id', (req, res) => {
         bucketlist.items[item_index].done = done || bucketlist.items[item_index].done;
         bucketlist.items[item_index].date_modified = new Date();
         bucketlist.save();
-        return res.status(200).json(bucketlist.items[item_index]);
+        return res.status(200).json(bucketlist);
     });
 });
 
@@ -95,7 +95,7 @@ router.delete('/:bucket_id/items/:item_id', (req, res) => {
         let remaining_items = bucketlist.items.filter(item => item.id !== item_id);
         bucketlist.items = remaining_items;
         bucketlist.save();
-        return res.status(200).json(bucketlist.items);
+        return res.status(200).json(bucketlist);
     });
 });
 
