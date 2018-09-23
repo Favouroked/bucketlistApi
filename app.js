@@ -31,7 +31,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(jwt({secret: 'UNIVERSAL'}).unless({path: ['/api/v1/auth/login']}));
+app.use(jwt({secret: 'UNIVERSAL'}).unless({path: ['/api/v1/auth/login', '/api/v1/auth/signup', '/']}));
 app.use('/', indexRouter);
 app.use(`/${apiVersion}/auth`, authRouter);
 app.use(`/${apiVersion}/bucketlists`, bucketListRouter);
