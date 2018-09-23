@@ -7,6 +7,8 @@ import AddIcon from '@material-ui/icons/Add';
 import Item from '../Item/Item';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -19,11 +21,17 @@ const styles = theme => ({
         marginLeft: '20px',
         marginRight: '20px'
     },
+    paper: {
+        ...theme.mixins.gutters(),
+        paddingTop: theme.spacing.unit * 2,
+        paddingBottom: theme.spacing.unit * 2,
+        marginBottom: theme.spacing.unit * 2
+    },
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
     },
     fab: {
-        position: 'absolute',
+        position: 'fixed',
         bottom: theme.spacing.unit * 2,
         right: theme.spacing.unit * 2
     },
@@ -90,7 +98,11 @@ class IndividualBucket extends React.Component {
 
         return (
             <div className={classes.root}>
-
+                <Paper className={classes.paper} elevation={1}>
+                    <Typography variant={"headline"} component={"h3"}>
+                        {this.state.bucketlist.name}
+                    </Typography>
+                </Paper>
                 <Grid container spacing={24}>
                     {this.state.bucketlist.items ? this.state.bucketlist.items.map(item => {
                         return (
