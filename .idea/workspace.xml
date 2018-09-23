@@ -121,11 +121,6 @@
             <path>
               <item name="bucketListApi" type="b2602c69:ProjectViewProjectNode" />
               <item name="bucketListApi" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="bucketListApi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bucketListApi" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -196,7 +191,7 @@
       <workItem from="1537579634009" duration="2232000" />
       <workItem from="1537582504799" duration="12734000" />
       <workItem from="1537645748585" duration="12840000" />
-      <workItem from="1537690637071" duration="4526000" />
+      <workItem from="1537690637071" duration="4785000" />
     </task>
     <task id="LOCAL-00001" summary="implemented react bucketlist component">
       <created>1537589327448</created>
@@ -237,7 +232,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59097000" />
+    <option name="totallyTimeSpent" value="59356000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
