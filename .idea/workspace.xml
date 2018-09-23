@@ -1,25 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c0e58b1a-c96a-434b-9f82-dff941177fdb" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/public/asset-manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/manifest.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/service-worker.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/static/css/main.c17080f1.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/static/css/main.c17080f1.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/static/js/main.deb3345e.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/static/js/main.deb3345e.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/www" beforeDir="false" afterPath="$PROJECT_DIR$/bin/www" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/bucketlist.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/bucketlist.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/bucketlists.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/bucketlists.js" afterDir="false" />
-    </list>
+    <list default="true" id="c0e58b1a-c96a-434b-9f82-dff941177fdb" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -214,7 +196,7 @@
       <workItem from="1537579634009" duration="2232000" />
       <workItem from="1537582504799" duration="12734000" />
       <workItem from="1537645748585" duration="12840000" />
-      <workItem from="1537690637071" duration="4276000" />
+      <workItem from="1537690637071" duration="4526000" />
     </task>
     <task id="LOCAL-00001" summary="implemented react bucketlist component">
       <created>1537589327448</created>
@@ -244,11 +226,18 @@
       <option name="project" value="LOCAL" />
       <updated>1537661849177</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="final commit">
+      <created>1537695428622</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1537695428622</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58847000" />
+    <option name="totallyTimeSpent" value="59097000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -261,7 +250,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1366" height="741" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24962743" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32991454" />
@@ -294,7 +282,8 @@
     <MESSAGE value="necessary refactoring" />
     <MESSAGE value="routing done" />
     <MESSAGE value="made button absolute" />
-    <option name="LAST_COMMIT_MESSAGE" value="made button absolute" />
+    <MESSAGE value="final commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="final commit" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
